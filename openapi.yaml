@@ -466,19 +466,12 @@ paths:
         description: The metadata of the Attachment
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               type: object
               required:
                 - metadata
-              properties:
-                data:
-                  format: binary
-                  description: The optional last chunk to upload
-                  type: string
-                metadata:
-                  $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultipart"
-
+              $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultipart"
       responses:
         "200":
           description: The attachement has been uploaded
