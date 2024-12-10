@@ -433,6 +433,7 @@ paths:
         - OI
       summary: upload a chunk of the content of an attachment
       description: This method allows to upload a chunk of the content of an attachment.
+      operationId: putAttachmentByChunk
       requestBody:
         description: The chunk of the content of the attachment
         required: true
@@ -462,6 +463,7 @@ paths:
 
         The server will aggregate all the chunks uploaded and validate the content of the attachment
         in an asynchronous way.
+      operationId: finalizeAttachmentCreation
       requestBody:
         description: The metadata of the Attachment
         required: true
