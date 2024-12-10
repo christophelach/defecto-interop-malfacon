@@ -409,11 +409,11 @@ paths:
       description: This method allows to download the content of an attachment.
       operationId: downloadMalfaconAttachment
       parameters:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/If-Match
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/If-None-Match
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/If-Modified-Since
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/If-Unmodified-Since
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/Range
+        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/If-Match
+        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/If-None-Match
+        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/If-Modified-Since
+        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/If-Unmodified-Since
+        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/Range
       responses:
         "200":
           description: The content of the attachment
