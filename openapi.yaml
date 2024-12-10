@@ -368,7 +368,7 @@ paths:
           application/json:
             schema:
               allOf:
-                - $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
+                - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
               required:
                 - size
                 - sha256
@@ -383,7 +383,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
+                  - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -409,11 +409,11 @@ paths:
       description: This method allows to download the content of an attachment.
       operationId: downloadMalfaconAttachment
       parameters:
-        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/If-Match
-        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/If-None-Match
-        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/If-Modified-Since
-        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/If-Unmodified-Since
-        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/parameters/Range
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/If-Match
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/If-None-Match
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/If-Modified-Since
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/If-Unmodified-Since
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/parameters/Range
       responses:
         "200":
           description: The content of the attachment
@@ -446,7 +446,7 @@ paths:
                   description: The file to upload
                   type: string
                 metadata:
-                  $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk"
+                  $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk"
       responses:
         "200":
           description: The chunk has been uploaded
@@ -1360,7 +1360,7 @@ components:
 
     Attachment:
       allOf:
-        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
         - description: |
             An attachment is a file that is attached to an entity.
 
