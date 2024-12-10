@@ -372,7 +372,7 @@ paths:
                 - attachment
               properties:
                 attachment:
-                  $ref: "#/components/schemas/Attachment"
+                  $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
                 file:
                   $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData"
       responses:
