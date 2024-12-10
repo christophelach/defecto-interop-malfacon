@@ -371,10 +371,10 @@ paths:
               required:
                 - attachment
               properties:
-                - attachment:
-                    $ref: "#/components/schemas/Attachment"
-                - file:
-                    $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData"
+                attachment:
+                  $ref: "#/components/schemas/Attachment"
+                file:
+                  $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData"
       responses:
         "200":
           description: |
