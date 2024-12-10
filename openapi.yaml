@@ -365,13 +365,15 @@ paths:
         description: The attachment to create
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
-              allOf:
-                - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
+              type: object
               required:
-                - size
-                - sha256
+                - attachment
+              allOf:
+                - attachment:
+                    $ref: "#/components/schemas/Attachment"
+                - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData"
       responses:
         "200":
           description: |
@@ -438,15 +440,10 @@ paths:
             schema:
               type: object
               required:
-                - file
-                - metadata
+                - data
+                - chunk
               properties:
-                file:
-                  format: binary
-                  description: The file to upload
-                  type: string
-                metadata:
-                  $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk"
+                $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentChunkForm"
       responses:
         "200":
           description: The chunk has been uploaded
@@ -465,9 +462,26 @@ paths:
 
         The server will aggregate all the chunks uploaded and validate the content of the attachment
         in an asynchronous way.
+      requestBody:
+        description: The metadata of the Attachment
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - metadata
+              properties:
+                data:
+                  format: binary
+                  description: The optional last chunk to upload
+                  type: string
+                metadata:
+                  $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultipart"
+
       responses:
         "200":
-          description: The chunk has been uploaded
+          description: The attachement has been uploaded
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
