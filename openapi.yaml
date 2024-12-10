@@ -373,7 +373,7 @@ paths:
               allOf:
                 - attachment:
                     $ref: "#/components/schemas/Attachment"
-                - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData"
+                - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData"
       responses:
         "200":
           description: |
@@ -385,7 +385,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
+                  - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -443,7 +443,7 @@ paths:
                 - data
                 - chunk
               properties:
-                $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentChunkForm"
+                $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentChunkForm"
       responses:
         "200":
           description: The chunk has been uploaded
@@ -477,7 +477,7 @@ paths:
                   description: The optional last chunk to upload
                   type: string
                 metadata:
-                  $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultipart"
+                  $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultipart"
 
       responses:
         "200":
@@ -1374,7 +1374,7 @@ components:
 
     Attachment:
       allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/FixAttachment/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
         - description: |
             An attachment is a file that is attached to an entity.
 
