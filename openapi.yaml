@@ -1355,37 +1355,7 @@ components:
     Attachment:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-AttachmentRedefinition/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
-        - description: |
-            An attachment is a file that is attached to an entity.
-
-            Only JPEG images are allowed.
-
-            Extensions:
-
-            * `.csv`
-            * `.docx`
-            * `.jpeg`
-            * `.jpg`
-            * `.ods`
-            * `.odt`
-            * `.pdf`
-            * `.png`
-            * `.svg`
-            * `.xlsx`
-
-            Mime types:
-
-            * `application/pdf`
-            * `application/vnd.oasis.opendocument.spreadsheet`
-            * `application/vnd.oasis.opendocument.text`
-            * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
-            * `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
-            * `image/jpeg`
-            * `image/jpg`
-            * `image/png`
-            * `image/svg+xml`
-            * `test/csv`
-          properties:
+        - properties:
             proofType:
               type: string
               enum:
@@ -1424,6 +1394,36 @@ components:
               items:
                 allOf:
                   - $ref: "#/components/schemas/RelatedMalfacon"
+          description: |
+            An attachment is a file that is attached to an entity.
+
+            Only JPEG images are allowed.
+
+            Extensions:
+
+            * `.csv`
+            * `.docx`
+            * `.jpeg`
+            * `.jpg`
+            * `.ods`
+            * `.odt`
+            * `.pdf`
+            * `.png`
+            * `.svg`
+            * `.xlsx`
+
+            Mime types:
+
+            * `application/pdf`
+            * `application/vnd.oasis.opendocument.spreadsheet`
+            * `application/vnd.oasis.opendocument.text`
+            * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+            * `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
+            * `image/jpeg`
+            * `image/jpg`
+            * `image/png`
+            * `image/svg+xml`
+            * `test/csv`
 
     AttachmentFormData:
       allOf:
