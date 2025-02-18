@@ -1420,6 +1420,8 @@ components:
             "@type":
               type: string
               default: "malfacon"
+          required:
+            - "@type"
 
     AttachmentMalfaconMultiPart:
       allOf:
