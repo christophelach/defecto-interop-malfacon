@@ -366,15 +366,22 @@ paths:
         required: true
         content:
           application/json:
-            schema:
-              oneOf:
-                - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-                - $ref: "#/components/schemas/AttachmentMalfaconFormData"
-              discriminator:
-                propertyName: attachmentType
-                mapping:
-                  multipart: "#/components/schemas/AttachmentMalfaconMultiPart"
-                  formdata: "#/components/schemas/AttachmentMalfaconFormData"
+            schema: "#/components/schemas/AttachmentMalfaconFormData"
+              # discriminator:
+              #   propertyName: attachmentType
+              #   mapping:
+              #     multipart: "#/components/schemas/AttachmentMalfaconMultiPart"
+              #     formdata: "#/components/schemas/AttachmentMalfaconFormData"
+          multipart/form-data:
+            schema: "#/components/schemas/AttachmentMalfaconMultiPart"
+              # oneOf:
+              #   - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                # - $ref: "#/components/schemas/AttachmentMalfaconFormData"
+              # discriminator:
+              #   propertyName: attachmentType
+              #   mapping:
+              #     multipart: "#/components/schemas/AttachmentMalfaconMultiPart"
+              #     formdata: "#/components/schemas/AttachmentMalfaconFormData"
       responses:
         "200":
           description: |
