@@ -368,12 +368,12 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: "#/components/schemas/AttachmentMalfaconMultipart"
+                - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                 - $ref: "#/components/schemas/AttachmentMalfaconFormData"
               discriminator:
                 propertyName: "@type"
                 mapping:
-                  multipart: "#/components/schemas/AttachmentMalfaconMultipart"
+                  multipart: "#/components/schemas/AttachmentMalfaconMultiPart"
                   formdata: "#/components/schemas/AttachmentMalfaconFormData"
       responses:
         "200":
