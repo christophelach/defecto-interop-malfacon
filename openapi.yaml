@@ -367,11 +367,14 @@ paths:
         content:
           application/json:
             schema:
-              allOf:
-                - $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
-              required:
-                - size
-                - sha256
+              oneOf:
+                - $ref: "#/components/schemas/AttachmentMalfaconMultipart"
+                - $ref: "#/components/schemas/AttachmentMalfaconFormData"
+              discriminator:
+                propertyName: "@type"
+                mapping:
+                  multipart: "#/components/schemas/AttachmentMalfaconMultipart"
+                  formdata: "#/components/schemas/AttachmentMalfaconFormData"
       responses:
         "200":
           description: |
@@ -382,8 +385,9 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
+                anyOf:
+                  - $ref: "#/components/schemas/AttachmentMalfaconMultipart"
+                  - $ref: "#/components/schemas/AttachmentMalfacon"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -1356,39 +1360,27 @@ components:
                 allOf:
                   - $ref: "#/components/schemas/RelatedMalfacon"
 
-    Attachment:
+    AttachmentMalfacon:
       allOf:
         - $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
         - description: |
             An attachment is a file that is attached to an entity.
 
-            Only JPEG images are allowed.
+            Only images are allowed.
 
             Extensions:
 
-            * `.csv`
-            * `.docx`
             * `.jpeg`
             * `.jpg`
-            * `.ods`
-            * `.odt`
-            * `.pdf`
             * `.png`
             * `.svg`
-            * `.xlsx`
 
             Mime types:
 
-            * `application/pdf`
-            * `application/vnd.oasis.opendocument.spreadsheet`
-            * `application/vnd.oasis.opendocument.text`
-            * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
-            * `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
             * `image/jpeg`
             * `image/jpg`
             * `image/png`
             * `image/svg+xml`
-            * `test/csv`
           properties:
             proofType:
               type: string
@@ -1403,22 +1395,10 @@ components:
             mimeType:
               type: string
               enum:
-                - application/pdf
-                - application/vnd.oasis.opendocument.spreadsheet
-                - application/vnd.oasis.opendocument.text
-                - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-                - application/vnd.openxmlformats-officedocument.wordprocessingml.document
                 - image/jpeg
                 - image/jpg
                 - image/png
                 - image/svg+xml
-                - test/csv
-            status:
-              type: string
-              enum:
-                - PENDING
-                - VALIDATED
-                - REJECTED
             relatedEntity:
               type: array
               description: Reference to the malfacon
@@ -1429,12 +1409,23 @@ components:
                 allOf:
                   - $ref: "#/components/schemas/RelatedMalfacon"
 
-    AttachmentFormData:
+    AttachmentMalfaconMultiPart:
+      allOf:
+        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/schemas/AttachmentMultiPart
+        - properties:
+            attachment:
+              $ref: "#/components/schemas/AttachmentMalfacon"
+          required:
+            - attachment
+
+    AttachmentMalfaconFormData:
       allOf:
         - $ref: https://raw.githubusercontent.com/before-interop/common/v1/tools/attachment/attachment.openapi.yaml#/components/schemas/AttachmentFormData
         - properties:
             attachment:
-              $ref: "#/components/schemas/Attachment"
+              $ref: "#/components/schemas/AttachmentMalfacon"
+          required:
+            - attachment
 
     Event:
       allOf:
