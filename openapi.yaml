@@ -1441,12 +1441,9 @@ components:
         - properties:
             attachment:
               $ref: "#/components/schemas/AttachmentMalfacon"
-            attachmentType:
-              type: string
-              default: formdata
           required:
             - attachment
-            - attachmentType
+
 
     Event:
       allOf:
