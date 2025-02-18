@@ -1365,62 +1365,65 @@ components:
                 allOf:
                   - $ref: "#/components/schemas/RelatedMalfacon"
 
+    Specialisation:
+      properties:
+        "@type":
+          type: string
+          default: "attachment"
+        proofType:
+          type: string
+          enum:
+            - ISSUE
+            - RESOLUTION
+          default: ISSUE
+        primary:
+          type: boolean
+          description: Specify if this is the main attachment. There can only be one primary attachment for each type.
+          default: true
+        mimeType:
+          type: string
+          enum:
+            - image/jpeg
+            - image/jpg
+            - image/png
+            - image/svg+xml
+        relatedEntity:
+          type: array
+          description: Reference to the malfacon
+          minItems: 1
+          maxItems: 1
+          readOnly: true
+          items:
+            allOf:
+              - $ref: "#/components/schemas/RelatedMalfacon"
+      description: |
+        An attachment is a file that is attached to an entity.
+
+        Only images are allowed.
+
+        Extensions:
+
+        * `.jpeg`
+        * `.jpg`
+        * `.png`
+        * `.svg`
+
+        Mime types:
+
+        * `image/jpeg`
+        * `image/jpg`
+        * `image/png`
+        * `image/svg+xml`
+
     AttachmentMalfacon:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
-        - description: |
-            An attachment is a file that is attached to an entity.
-
-            Only images are allowed.
-
-            Extensions:
-
-            * `.jpeg`
-            * `.jpg`
-            * `.png`
-            * `.svg`
-
-            Mime types:
-
-            * `image/jpeg`
-            * `image/jpg`
-            * `image/png`
-            * `image/svg+xml`
-          properties:
-            "@type":
-              type: string
-              default: "attachment"
-            proofType:
-              type: string
-              enum:
-                - ISSUE
-                - RESOLUTION
-              default: ISSUE
-            primary:
-              type: boolean
-              description: Specify if this is the main attachment. There can only be one primary attachment for each type.
-              default: true
-            mimeType:
-              type: string
-              enum:
-                - image/jpeg
-                - image/jpg
-                - image/png
-                - image/svg+xml
-            relatedEntity:
-              type: array
-              description: Reference to the malfacon
-              minItems: 1
-              maxItems: 1
-              readOnly: true
-              items:
-                allOf:
-                  - $ref: "#/components/schemas/RelatedMalfacon"
+        - $ref: "#/components/schemas/Specialisation"
 
     AttachmentMalfaconMultiPart:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart
-        - $ref: "#/components/schemas/AttachmentMalfacon"
+        - $ref: "#/components/schemas/Specialisation"
         - properties:
             "@type":
               type: string
