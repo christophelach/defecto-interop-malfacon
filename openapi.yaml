@@ -386,7 +386,7 @@ paths:
             application/json:
               schema:
                 anyOf:
-                  - $ref: "#/components/schemas/AttachmentMalfaconMultipart"
+                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                   - $ref: "#/components/schemas/AttachmentMalfacon"
           headers:
             ETag:
