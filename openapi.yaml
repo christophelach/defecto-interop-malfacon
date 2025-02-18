@@ -328,7 +328,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Attachment"
+                  $ref: "#/components/schemas/AttachmentMalfacon"
         "400": *response400
         "404": *response404
         default:
@@ -1472,7 +1472,7 @@ components:
         - $ref: "#/components/schemas/Event"
         - properties:
             data:
-              $ref: "#/components/schemas/Attachment"
+              $ref: "#/components/schemas/AttachmentMalfacon"
 
     RelatedMalfacon:
       allOf:
