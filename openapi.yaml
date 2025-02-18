@@ -1415,8 +1415,12 @@ components:
         - properties:
             attachment:
               $ref: "#/components/schemas/AttachmentMalfacon"
+            "@type":
+              type: string
+              default: "multipart"
           required:
             - attachment
+            - "@type"
 
     AttachmentMalfaconFormData:
       allOf:
@@ -1424,8 +1428,12 @@ components:
         - properties:
             attachment:
               $ref: "#/components/schemas/AttachmentMalfacon"
+            "@type":
+              type: string
+              default: "formdata"
           required:
             - attachment
+            - "@type"
 
     Event:
       allOf:
