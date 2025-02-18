@@ -1417,23 +1417,23 @@ components:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
         - $ref: "#/components/schemas/Specialisation"
         - properties:
-            "@type":
+            "attachmentType":
               type: string
               default: "malfacon"
           required:
-            - "@type"
+            - "attachmentType"
 
     AttachmentMalfaconMultiPart:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart
         - $ref: "#/components/schemas/Specialisation"
         - properties:
-            "@type":
+            "attachmentType":
               type: string
               default: "multipart"
           required:
             - attachment
-            - "@type"
+            - "attachmentType"
 
     AttachmentMalfaconFormData:
       allOf:
