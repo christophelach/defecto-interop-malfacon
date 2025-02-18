@@ -371,7 +371,7 @@ paths:
                 - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                 - $ref: "#/components/schemas/AttachmentMalfaconFormData"
               discriminator:
-                propertyName: "attachmentType"
+                propertyName: attachmentType
                 mapping:
                   multipart: "#/components/schemas/AttachmentMalfaconMultiPart"
                   formdata: "#/components/schemas/AttachmentMalfaconFormData"
