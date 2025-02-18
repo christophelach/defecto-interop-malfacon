@@ -1367,7 +1367,7 @@ components:
 
     AttachmentMalfacon:
       allOf:
-        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
         - description: |
             An attachment is a file that is attached to an entity.
 
