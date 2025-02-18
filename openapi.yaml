@@ -1443,7 +1443,7 @@ components:
               $ref: "#/components/schemas/AttachmentMalfacon"
             attachmentType:
               type: string
-              default: "formdata"
+              default: formdata
           required:
             - attachment
             - attachmentType
