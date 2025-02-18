@@ -1441,8 +1441,12 @@ components:
         - properties:
             attachment:
               $ref: "#/components/schemas/AttachmentMalfacon"
+            attachmentType:
+              type: string
+              default: "malfacon"
           required:
             - attachment
+            - attachmentType
 
 
     Event:
