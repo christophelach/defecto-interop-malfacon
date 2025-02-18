@@ -1411,7 +1411,7 @@ components:
 
     AttachmentMalfaconMultiPart:
       allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultipart
         - properties:
             attachment:
               $ref: "#/components/schemas/AttachmentMalfacon"
