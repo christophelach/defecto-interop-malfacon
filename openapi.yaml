@@ -385,9 +385,14 @@ paths:
           content:
             application/json:
               schema:
-                anyOf:
+                oneOf:
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                   - $ref: "#/components/schemas/AttachmentMalfacon"
+                discriminator:
+                  propertyName: "@type"
+                  mapping:
+                    multipart: "#/components/schemas/AttachmentMalfaconMultiPart"
+                    malfacon: "#/components/schemas/AttachmentMalfacon"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -1382,6 +1387,9 @@ components:
             * `image/png`
             * `image/svg+xml`
           properties:
+            "@type":
+              type: string
+              default: "attachment"
             proofType:
               type: string
               enum:
