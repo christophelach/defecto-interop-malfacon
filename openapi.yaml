@@ -486,6 +486,7 @@ paths:
 
         The server will aggregate all the chunks uploaded and validate the content of the attachment
         in an asynchronous way.
+      operationId: finalizeMalfaconAttachmentContent
       requestBody:
         description: finalize the content of the attachment. No body is required
         content:
@@ -516,6 +517,7 @@ paths:
         - OI
       summary: upload a specific chunk of the content of an attachment
       description: This method allows to upload a specific chunk of the content of an attachment identified by its id.
+      operationId: uploadMalfaconAttachmentContentChunk
       requestBody:
         description: A chunk of the content of the attachment
         required: true
@@ -1517,7 +1519,11 @@ components:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart"
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-        - required:
+        - properties:
+            "@type":
+              type: string
+              example: AttachmentMalfaconMultiPart
+          required:
           - "@type"
 
     AttachmentMalfaconMultiPartPhoto:
@@ -1525,7 +1531,11 @@ components:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartPhoto"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-        - required:
+        - properties:
+            "@type":
+              type: string
+              example: AttachmentMalfaconMultiPartPhoto
+          required:
           - "@type"
 
     # Used in case of implementing post multipart form data
