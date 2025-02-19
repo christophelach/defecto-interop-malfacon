@@ -412,7 +412,10 @@ paths:
         - Attachment
         - OI
       summary: upload the content of an attachment in case of only one chunk has to be uploaded
-      description: This method allows to upload the content of an attachment which can be sent in one chunk.
+      description: |
+        This method allows to upload the content of an attachment which can be sent in one chunk. The content is sent in the body of the request.
+        The attachment expects one chunk and should return an array of size 1 for uploadedChunks. The validation of the content of the attachment is done asynchronously.
+        The status of the attachment should be set to UPLOADED
       operationId: uploadMalfaconAttachmentContent
       requestBody:
         description: The content of the attachment
@@ -474,9 +477,9 @@ paths:
       summary: Finalize the creation of the content of an attachment (used when upload by chunks)
       description: |
         This method allows to finalize the creation of the content of an attachment.
-
         The server will aggregate all the chunks uploaded and validate the content of the attachment
         in an asynchronous way.
+        The status of the attachment should be set to UPLOADED and there should be as much items in the uploadedChunks array as the number of expected chunks.
       operationId: finalizeMalfaconAttachmentContent
       requestBody:
         description: finalize the content of the attachment. No body is required
@@ -528,7 +531,7 @@ paths:
                 - metadata
       responses:
         "200":
-          description: The chunk has been uploaded
+          description: The chunk has been uploaded (the property uploadChunks has been updated with the new chunk index)
           content:
             application/json:
               schema:
