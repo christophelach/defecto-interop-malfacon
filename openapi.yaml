@@ -1411,23 +1411,23 @@ components:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
         - $ref: "#/components/schemas/Specialisation"
         - properties:
-            attachmentType:
+            "@type":
               type: string
               default: "malfacon"
           required:
-            - attachmentType
+            - "@type"
 
     AttachmentMalfaconMultiPart:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart
         - $ref: "#/components/schemas/AttachmentSpecialisation"
         - properties:
-            attachmentType:
+            "@type":
               type: string
               default: multipart
           required:
             - attachment
-            - attachmentType
+            - "@type"
 
     # Used in case of implementing post multipart form data
     AttachmentMalfaconFormData:
@@ -1436,12 +1436,12 @@ components:
         - properties:
             attachment:
               $ref: "#/components/schemas/AttachmentMalfacon"
-            attachmentType:
+            "@type":
               type: string
               default: "malfacon"
           required:
             - attachment
-            - attachmentType
+            - "@type"
 
 
     Event:
