@@ -375,7 +375,7 @@ paths:
                 - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                 - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
               discriminator:
-                propertyName: "@type"
+                propertyName: "test"
       responses:
         "200":
           description: |
@@ -390,7 +390,7 @@ paths:
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
                 discriminator:
-                  propertyName: "@type"
+                  propertyName: "test"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -432,7 +432,7 @@ paths:
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
                 discriminator:
-                  propertyName: "@type"
+                  propertyName: "test"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -492,7 +492,7 @@ paths:
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
                 discriminator:
-                  propertyName: "@type"
+                  propertyName: "test"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -1452,35 +1452,7 @@ components:
           description: Specify if this is the main attachment. There can only be one primary attachment for each type.
           default: true
       description: |
-        An attachment is a file that is attached to an entity.
-
-        Only images are allowed.
-
-        Extensions:
-
-            * `.csv`
-            * `.docx`
-            * `.jpeg`
-            * `.jpg`
-            * `.ods`
-            * `.odt`
-            * `.pdf`
-            * `.png`
-            * `.svg`
-            * `.xlsx`
-
-            Mime types:
-
-            * `application/pdf`
-            * `application/vnd.oasis.opendocument.spreadsheet`
-            * `application/vnd.oasis.opendocument.text`
-            * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
-            * `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
-            * `image/jpeg`
-            * `image/jpg`
-            * `image/png`
-            * `image/svg+xml`
-            * `test/csv`
+        To solve the malfacon, a photo has to be sent and acts as proof.
 
     MalfaconRelatedEntity:
       properties:
@@ -1511,11 +1483,11 @@ components:
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
         - properties:
-            "@type":
+            "test":
               type: string
               example: AttachmentMalfaconMultiPart
           required:
-          - "@type"
+          - "test"
 
     AttachmentMalfaconMultiPartPhoto:
       allOf:
@@ -1523,10 +1495,10 @@ components:
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
         - properties:
-            "@type":
+            "test":
               type: string
           required:
-          - "@type"
+          - "test"
 
     # Used in case of implementing post multipart form data
     AttachmentMalfaconFormData:
