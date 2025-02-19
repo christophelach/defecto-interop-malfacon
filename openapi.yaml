@@ -1409,7 +1409,7 @@ components:
     AttachmentMalfacon:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
-        - $ref: "#/components/schemas/Specialisation"
+        - $ref: "#/components/schemas/AttachmentSpecialisation"
         - properties:
             "@type":
               type: string
