@@ -365,17 +365,26 @@ paths:
         description: The attachment to create
         required: true
         content:
+          # multipart/form-data:
+          #   schema:
+          #     properties:
+          #       file:
+          #         type: string
+          #         format: binary
+          #         description: The content of the attachment
+          #       metadata:
+          #         $ref: "#/components/schemas/AttachmentMalfacon"
+          #     required:
+          #       - metadata
           application/json:
             schema:
-              $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-
+              $ref: "#/components/schemas/AttachmentMalfacon"
       responses:
         "200":
           description: |
-            The attachment metadata.
-
+            The attachment multipart metadata.
             You have to use the generated `id` to upload the content of the attachment with the `PUT /attachment/{id}/content` method
-            and finalize the creation of the attachment with the `PATCH /attachment/{id}/content` method.
+            and finalize the creation of the attachment with the `POST /attachment/{id}/content` method.
           content:
             application/json:
               schema:
@@ -391,6 +400,34 @@ paths:
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
+
+  /malfacon/{malfaconId}/attachment/{attachmentId}:
+    parameters:
+        - $ref: "#/components/parameters/malfaconId"
+        - $ref: "#/components/parameters/attachmentId"
+    post:
+      tags:
+        - Attachment
+        - OI
+      summary: upload the content of an attachment in case of only one chunk has to be uploaded
+      description: This method allows to upload the content of an attachment which can be sent in one chunk.
+      operationId: uploadMalfaconAttachmentContent
+      requestBody:
+        description: The content of the attachment
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        "204":
+          description: the content has been uploaded
+        "404": *response404
+        default:
+          $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
+        "412":
+          $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/Error-412
 
   /malfacon/{malfaconId}/attachment/{attachmentId}/content:
     parameters:
@@ -420,14 +457,46 @@ paths:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
         "412":
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/Error-412
-    put:
+    post:
       tags:
         - Attachment
         - OI
-      summary: upload a chunk of the content of an attachment
-      description: This method allows to upload a chunk of the content of an attachment.
+      summary: Finalize the creation of the content of an attachment (used when upload by chunks)
+      description: |
+        This method allows to finalize the creation of the content of an attachment.
+
+        The server will aggregate all the chunks uploaded and validate the content of the attachment
+        in an asynchronous way.
       requestBody:
-        description: The chunk of the content of the attachment
+        summary: finalize the content of the attachment when uploading by chunk. No body is required
+        description: finalize the content of the attachment. No body is required
+        content: {}
+      responses:
+        "200":
+          description: All the chunks have been uploaded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+        "404": *response404
+        default:
+          $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
+
+  /malfacon/{malfaconId}/attachment/{attachmentId}/content/{chunkId}:
+    parameters:
+      - $ref: "#/components/parameters/malfaconId"
+      - $ref: "#/components/parameters/attachmentId"
+      - $ref: "#/components/parameters/chunkId"
+    post:
+      tags:
+        - Attachment
+        - OI
+      summary: upload a specific chunk of the content of an attachment
+      description: This method allows to upload a specific chunk of the content of an attachment identified by its id.
+      requestBody:
+        description: A chunk of the content of the attachment
         required: true
         content:
           multipart/form-data:
@@ -446,27 +515,19 @@ paths:
       responses:
         "200":
           description: The chunk has been uploaded
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+
         "404": *response404
         "413":
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/Error-413
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
-    post:
-      tags:
-        - Attachment
-        - OI
-      summary: Finalize the creation of the content of an attachment
-      description: |
-        This method allows to finalize the creation of the content of an attachment.
 
-        The server will aggregate all the chunks uploaded and validate the content of the attachment
-        in an asynchronous way.
-      responses:
-        "200":
-          description: The chunk has been uploaded
-        "404": *response404
-        default:
-          $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
   /malfacon/event:
     get:
       tags:
@@ -1411,15 +1472,6 @@ components:
           required:
             - attachment
 
-    MalfaconAttachmentChunkForm:
-      allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentChunkForm
-        - properties:
-            chunk:
-              $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk
-          required:
-            - chunk
-
     # Used in case of implementing post multipart form data
     AttachmentMalfaconFormData:
       allOf:
@@ -1639,6 +1691,14 @@ components:
       name: attachmentId
       in: path
       description: The attachment id
+      required: true
+      schema:
+        type: string
+
+    chunkId:
+      name: chunkId
+      in: path
+      description: The chunk id
       required: true
       schema:
         type: string
