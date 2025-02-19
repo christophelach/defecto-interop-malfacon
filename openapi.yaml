@@ -363,23 +363,12 @@ paths:
         - Attachment
         - OI
       summary: Create a attachment
-      description: This method allows to create a attachment.
+      description: This method allows to create an attachment.
       operationId: createMalfaconAttachment
       requestBody:
         description: The attachment to create
         required: true
         content:
-          # multipart/form-data:
-          #   schema:
-          #     properties:
-          #       file:
-          #         type: string
-          #         format: binary
-          #         description: The content of the attachment
-          #       metadata:
-          #         $ref: "#/components/schemas/AttachmentMalfacon"
-          #     required:
-          #       - metadata
           application/json:
             schema:
               oneOf:
@@ -391,7 +380,7 @@ paths:
         "200":
           description: |
             The attachment multipart metadata.
-            You have to use the generated `id` to upload the content of the attachment with the `POST /attachment/{id}` method (1 chunk)
+            You have to use the generated `id` to upload the content of the attachment with the `POST /attachment/{id}` method (1 chunk, ie the whole content),
             or the `POST /attachment/{id}/content/{chunkId}` method (multiple chunks).
             and finalize the creation of the attachment with the `POST /attachment/{id}/content` method.
           content:
@@ -1513,7 +1502,7 @@ components:
 
     AttachmentMalfaconPhoto:
       allOf:
-        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentPhoto"
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentImage"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
 
     AttachmentMalfaconMultiPart:
@@ -1530,13 +1519,12 @@ components:
 
     AttachmentMalfaconMultiPartPhoto:
       allOf:
-        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartPhoto"
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartImage"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
         - properties:
             "@type":
               type: string
-              example: AttachmentMalfaconMultiPartPhoto
           required:
           - "@type"
 
