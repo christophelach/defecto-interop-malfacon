@@ -434,7 +434,7 @@ paths:
             schema:
               type: object
               properties:
-                chunk:
+                file:
                   type: string
                   format: binary
                   description: The chunk of the content of the attachment
