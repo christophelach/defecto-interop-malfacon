@@ -432,7 +432,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentChunkForm"
+              $ref: "#/components/schemas/MalfaconAttachmentChunkForm"
       responses:
         "200":
           description: The chunk has been uploaded
@@ -1400,6 +1400,15 @@ components:
         - $ref: "#/components/schemas/AttachmentSpecialisation"
           required:
             - attachment
+
+    MalfaconAttachmentChunkForm:
+      allOf:
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentChunkForm
+        - properties:
+            chunk:
+              $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk
+          required:
+            - chunk
 
     # Used in case of implementing post multipart form data
     AttachmentMalfaconFormData:
