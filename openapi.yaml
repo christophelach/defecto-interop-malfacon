@@ -432,7 +432,18 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/MalfaconAttachmentChunkForm"
+              type: object
+              properties:
+                chunk:
+                  type: string
+                  format: binary
+                  description: The chunk of the content of the attachment
+                metadata:
+                  $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk
+              required:
+                - chunk
+                - metadata
+              # $ref: "#/components/schemas/MalfaconAttachmentChunkForm"
       responses:
         "200":
           description: The chunk has been uploaded
