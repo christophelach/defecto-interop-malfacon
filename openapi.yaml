@@ -1427,10 +1427,16 @@ components:
         mimeType:
           type: string
           enum:
+            - application/pdf
+            - application/vnd.oasis.opendocument.spreadsheet
+            - application/vnd.oasis.opendocument.text
+            - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+            - application/vnd.openxmlformats-officedocument.wordprocessingml.document
             - image/jpeg
             - image/jpg
             - image/png
             - image/svg+xml
+            - test/csv
         relatedEntity:
           type: array
           description: Reference to the malfacon
@@ -1447,17 +1453,29 @@ components:
 
         Extensions:
 
-        * `.jpeg`
-        * `.jpg`
-        * `.png`
-        * `.svg`
+            * `.csv`
+            * `.docx`
+            * `.jpeg`
+            * `.jpg`
+            * `.ods`
+            * `.odt`
+            * `.pdf`
+            * `.png`
+            * `.svg`
+            * `.xlsx`
 
-        Mime types:
+            Mime types:
 
-        * `image/jpeg`
-        * `image/jpg`
-        * `image/png`
-        * `image/svg+xml`
+            * `application/pdf`
+            * `application/vnd.oasis.opendocument.spreadsheet`
+            * `application/vnd.oasis.opendocument.text`
+            * `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+            * `application/vnd.openxmlformats-officedocument.wordprocessingml.document`
+            * `image/jpeg`
+            * `image/jpg`
+            * `image/png`
+            * `image/svg+xml`
+            * `test/csv`
 
     AttachmentMalfacon:
       allOf:
