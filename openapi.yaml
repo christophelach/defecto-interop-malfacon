@@ -385,6 +385,8 @@ paths:
               oneOf:
                 - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                 - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+              discriminator:
+                propertyName: "@type"
       responses:
         "200":
           description: |
