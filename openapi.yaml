@@ -328,7 +328,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/AttachmentMalfacon"
+                  anyOf:
+                    - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                    - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+                  discriminator:
+                    propertyName: "@type"
         "400": *response400
         "404": *response404
         default:
@@ -383,12 +387,17 @@ paths:
         "200":
           description: |
             The attachment multipart metadata.
-            You have to use the generated `id` to upload the content of the attachment with the `PUT /attachment/{id}/content` method
+            You have to use the generated `id` to upload the content of the attachment with the `POST /attachment/{id}` method (1 chunk)
+            or the `POST /attachment/{id}/content/{chunkId}` method (multiple chunks).
             and finalize the creation of the attachment with the `POST /attachment/{id}/content` method.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                oneOf:
+                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+                discriminator:
+                  propertyName: "@type"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -421,8 +430,16 @@ paths:
               type: string
               format: binary
       responses:
-        "204":
+        "200":
           description: the content has been uploaded
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+                discriminator:
+                  propertyName: "@type"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -476,9 +493,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                oneOf:
+                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+                discriminator:
+                  propertyName: "@type"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -1412,7 +1431,19 @@ components:
                 allOf:
                   - $ref: "#/components/schemas/RelatedMalfacon"
 
-    AttachmentSpecialisation:
+    MalfaconMimeTypeOthers:
+      properties:
+        mimeType:
+          type: string
+          enum:
+            - application/pdf
+            - application/vnd.oasis.opendocument.spreadsheet
+            - application/vnd.oasis.opendocument.text
+            - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+            - application/vnd.openxmlformats-officedocument.wordprocessingml.document
+            - test/csv
+
+    AttachmentMalfaconSpecialisationPhoto:
       properties:
         proofType:
           type: string
@@ -1424,28 +1455,6 @@ components:
           type: boolean
           description: Specify if this is the main attachment. There can only be one primary attachment for each type.
           default: true
-        mimeType:
-          type: string
-          enum:
-            - application/pdf
-            - application/vnd.oasis.opendocument.spreadsheet
-            - application/vnd.oasis.opendocument.text
-            - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-            - application/vnd.openxmlformats-officedocument.wordprocessingml.document
-            - image/jpeg
-            - image/jpg
-            - image/png
-            - image/svg+xml
-            - test/csv
-        relatedEntity:
-          type: array
-          description: Reference to the malfacon
-          minItems: 1
-          maxItems: 1
-          readOnly: true
-          items:
-            allOf:
-              - $ref: "#/components/schemas/RelatedMalfacon"
       description: |
         An attachment is a file that is attached to an entity.
 
@@ -1477,17 +1486,43 @@ components:
             * `image/svg+xml`
             * `test/csv`
 
+    MalfaconRelatedEntity:
+      properties:
+        relatedEntity:
+          type: array
+          description: Reference to the malfacon
+          minItems: 1
+          maxItems: 1
+          readOnly: true
+          items:
+            allOf:
+              - $ref: "#/components/schemas/RelatedMalfacon"
+
     AttachmentMalfacon:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
-        - $ref: "#/components/schemas/AttachmentSpecialisation"
+        - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
+        - $ref: "#/components/schemas/MalfaconRelatedEntity"
+
+    AttachmentMalfaconPhoto:
+      allOf:
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentPhoto
+        - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
+        - $ref: "#/components/schemas/MalfaconRelatedEntity"
 
     AttachmentMalfaconMultiPart:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart
-        - $ref: "#/components/schemas/AttachmentSpecialisation"
+        - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
+        - $ref: "#/components/schemas/MalfaconRelatedEntity"
           required:
             - attachment
+
+    AttachmentMalfaconMultiPartPhoto:
+      allOf:
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartPhoto
+        - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
+        - $ref: "#/components/schemas/MalfaconRelatedEntity"
 
     # Used in case of implementing post multipart form data
     AttachmentMalfaconFormData:
