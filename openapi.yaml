@@ -468,10 +468,8 @@ paths:
         The server will aggregate all the chunks uploaded and validate the content of the attachment
         in an asynchronous way.
       requestBody:
-        summary: finalize the content of the attachment when uploading by chunk. No body is required
         description: finalize the content of the attachment. No body is required
-        content:
-          application/json: {}
+        content: {}
       responses:
         "200":
           description: All the chunks have been uploaded
