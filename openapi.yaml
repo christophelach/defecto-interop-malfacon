@@ -439,24 +439,7 @@ paths:
                   format: binary
                   description: The chunk of the content of the attachment
                 metadata:
-                  type: object
-                  properties:
-                    index:
-                      format: int32
-                      type: integer
-                      description: The index of the chunk
-                    size:
-                      format: int32
-                      type: integer
-                      description: The size of the chunk
-                    sha256:
-                      type: string
-                      description: The SHA256 hash of the chunk
-                  required:
-                    - index
-                    - size
-                    - sha256
-                  # $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk
+                  $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk
               required:
                 - chunk
                 - metadata
