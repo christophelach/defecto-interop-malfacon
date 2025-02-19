@@ -367,23 +367,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AttachmentMalfaconFormData"
-              # discriminator:
-              #   propertyName: attachmentType
-              #   mapping:
-              #     multipart: "#/components/schemas/AttachmentMalfaconMultiPart"
-              #     formdata: "#/components/schemas/AttachmentMalfaconFormData"
-          multipart/form-data:
-            schema:
               $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-              # oneOf:
-              #   - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-                # - $ref: "#/components/schemas/AttachmentMalfaconFormData"
-              # discriminator:
-              #   propertyName: attachmentType
-              #   mapping:
-              #     multipart: "#/components/schemas/AttachmentMalfaconMultiPart"
-              #     formdata: "#/components/schemas/AttachmentMalfaconFormData"
+
       responses:
         "200":
           description: |
@@ -1374,7 +1359,7 @@ components:
                 allOf:
                   - $ref: "#/components/schemas/RelatedMalfacon"
 
-    Specialisation:
+    AttachmentSpecialisation:
       properties:
         proofType:
           type: string
@@ -1435,7 +1420,7 @@ components:
     AttachmentMalfaconMultiPart:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart
-        - $ref: "#/components/schemas/Specialisation"
+        - $ref: "#/components/schemas/AttachmentSpecialisation"
         - properties:
             attachmentType:
               type: string
@@ -1444,6 +1429,7 @@ components:
             - attachment
             - attachmentType
 
+    # Used in case of implementing post multipart form data
     AttachmentMalfaconFormData:
       allOf:
         - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData
