@@ -382,7 +382,9 @@ paths:
           #       - metadata
           application/json:
             schema:
-              $ref: "#/components/schemas/AttachmentMalfacon"
+              oneOf:
+                - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
       responses:
         "200":
           description: |
@@ -486,7 +488,8 @@ paths:
         in an asynchronous way.
       requestBody:
         description: finalize the content of the attachment. No body is required
-        content: {}
+        content:
+          application/json: {}
       responses:
         "200":
           description: All the chunks have been uploaded
@@ -1500,19 +1503,19 @@ components:
 
     AttachmentMalfacon:
       allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
 
     AttachmentMalfaconPhoto:
       allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentPhoto
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentPhoto"
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
 
     AttachmentMalfaconMultiPart:
       allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart"
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
       required:
@@ -1520,7 +1523,7 @@ components:
 
     AttachmentMalfaconMultiPartPhoto:
       allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartPhoto
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartPhoto"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
       required:
