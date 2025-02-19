@@ -1437,7 +1437,7 @@ components:
             - application/vnd.oasis.opendocument.text
             - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
             - application/vnd.openxmlformats-officedocument.wordprocessingml.document
-            - test/csv
+            - text/csv
 
     AttachmentMalfaconSpecialisationPhoto:
       properties:
