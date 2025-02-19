@@ -375,7 +375,7 @@ paths:
                 - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                 - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
               discriminator:
-                propertyName: "test"
+                propertyName: "@type"
       responses:
         "200":
           description: |
@@ -390,7 +390,7 @@ paths:
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
                 discriminator:
-                  propertyName: "test"
+                  propertyName: "@type"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -432,7 +432,7 @@ paths:
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
                 discriminator:
-                  propertyName: "test"
+                  propertyName: "@type"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -492,7 +492,7 @@ paths:
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                   - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
                 discriminator:
-                  propertyName: "test"
+                  propertyName: "@type"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -1483,11 +1483,11 @@ components:
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
         - properties:
-            "test":
+            "@type":
               type: string
               example: AttachmentMalfaconMultiPart
           required:
-          - "test"
+            - "@type"
 
     AttachmentMalfaconMultiPartPhoto:
       allOf:
@@ -1495,10 +1495,10 @@ components:
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
         - properties:
-            "test":
+            "@type":
               type: string
           required:
-          - "test"
+            - "@type"
 
     # Used in case of implementing post multipart form data
     AttachmentMalfaconFormData:
