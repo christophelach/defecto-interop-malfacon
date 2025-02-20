@@ -329,6 +329,8 @@ paths:
                 type: array
                 items:
                   anyOf:
+                    - $ref: "#/components/schemas/AttachmentMalfacon"
+                    - $ref: "#/components/schemas/AttachmentMalfaconPhoto"
                     - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                     - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
                   discriminator:
@@ -537,7 +539,9 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                  anyOf:
+                    - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
+                    - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
 
         "404": *response404
         "413":
@@ -1478,6 +1482,7 @@ components:
     AttachmentMalfaconPhoto:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentImage"
+        - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
 
     AttachmentMalfaconMultiPart:
@@ -1558,7 +1563,9 @@ components:
         - $ref: "#/components/schemas/Event"
         - properties:
             data:
-              $ref: "#/components/schemas/AttachmentMalfacon"
+              anyOf:
+                - $ref: "#/components/schemas/AttachmentMalfacon"
+                - $ref: "#/components/schemas/AttachmentMalfaconPhoto"
 
     RelatedMalfacon:
       allOf:
