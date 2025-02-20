@@ -328,7 +328,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
+                  $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
         "400": *response400
         "404": *response404
         default:
@@ -367,7 +367,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
+              $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
       responses:
         "200":
           description: |
@@ -378,7 +378,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
+                $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -440,7 +440,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
+                $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -482,7 +482,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
+                  $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
 
         "404": *response404
         "413":
@@ -1503,7 +1503,7 @@ components:
         - $ref: "#/components/schemas/Event"
         - properties:
             data:
-              $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
+              $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
 
     RelatedMalfacon:
       allOf:
