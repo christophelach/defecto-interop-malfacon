@@ -1421,8 +1421,8 @@ components:
       discriminator:
         propertyName: "@type"
         mapping:
-          "documentStandard": "#/components/schemas/AttachmentMalfaconStandard"
-          "documentPhoto": "#/components/schemas/AttachmentMalfaconPhoto"
+          "documentStandard": "#/components/schemas/AttachmentMalfaconMonoPartStandard"
+          "documentPhoto": "#/components/schemas/AttachmentMalfaconMonoPartPhoto"
           "documentMultiPartStandard": "#/components/schemas/AttachmentMalfaconMultiPartStandard"
           "documentMultiPartPhoto": "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
 
