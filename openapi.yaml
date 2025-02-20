@@ -1416,7 +1416,7 @@ components:
 
     AttachmentMalfacon:
       allOf:
-        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase.yaml"
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
       discriminator:
         propertyName: "@type"
