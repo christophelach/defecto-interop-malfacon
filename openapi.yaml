@@ -1478,12 +1478,24 @@ components:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
+        - properties:
+            "@type":
+              type: string
+              example: AttachmentMalfaconMultiPart
+          required:
+            - "@type"
 
     AttachmentMalfaconPhoto:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentImage"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
+        - properties:
+            "@type":
+              type: string
+              example: AttachmentMalfaconMultiPart
+          required:
+            - "@type"
 
     AttachmentMalfaconMultiPart:
       allOf:
@@ -1507,16 +1519,6 @@ components:
               type: string
           required:
             - "@type"
-
-    # Used in case of implementing post multipart form data
-    AttachmentMalfaconFormData:
-      allOf:
-        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentFormData
-        - properties:
-            attachment:
-              $ref: "#/components/schemas/AttachmentMalfacon"
-          required:
-            - attachment
 
     Event:
       allOf:
@@ -1566,6 +1568,8 @@ components:
               anyOf:
                 - $ref: "#/components/schemas/AttachmentMalfacon"
                 - $ref: "#/components/schemas/AttachmentMalfaconPhoto"
+              discriminator:
+                propertyName: "@type"
 
     RelatedMalfacon:
       allOf:
