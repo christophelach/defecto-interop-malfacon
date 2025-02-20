@@ -1527,14 +1527,6 @@ components:
             - time
             - subject
             - type
-          discriminator:
-            propertyName: type
-            mapping:
-              "fr.interop.malfacon.create": "#/components/schemas/EventMalfacon"
-              "fr.interop.malfacon.update": "#/components/schemas/EventMalfacon"
-              "fr.interop.malfacon.note.create": "#/components/schemas/EventMalfaconNote"
-              "fr.interop.malfacon.attachment.create": "#/components/schemas/EventMalfaconAttachment"
-              "fr.interop.malfacon.attachment.update": "#/components/schemas/EventMalfaconAttachment"
           properties:
             subject:
               description: Identifiant unique de la malfaçon.
@@ -1545,6 +1537,14 @@ components:
             datacontenttype:
               type: string
               default: "application/json"
+      discriminator:
+        propertyName: type
+        mapping:
+          "fr.interop.malfacon.create": "#/components/schemas/EventMalfacon"
+          "fr.interop.malfacon.update": "#/components/schemas/EventMalfacon"
+          "fr.interop.malfacon.note.create": "#/components/schemas/EventMalfaconNote"
+          "fr.interop.malfacon.attachment.create": "#/components/schemas/EventMalfaconAttachment"
+          "fr.interop.malfacon.attachment.update": "#/components/schemas/EventMalfaconAttachment"
 
     EventMalfacon:
       allOf:
