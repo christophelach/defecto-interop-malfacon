@@ -328,7 +328,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/AttachmentMalfacon"
+                  $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
         "400": *response400
         "404": *response404
         default:
@@ -367,7 +367,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/AttachmentMalfacon"
+              $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
       responses:
         "200":
           description: |
@@ -378,7 +378,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AttachmentMalfacon"
+                $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -440,7 +440,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AttachmentMalfacon"
+                $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -482,7 +482,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/AttachmentMalfacon"
+                  $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
 
         "404": *response404
         "413":
@@ -1414,42 +1414,49 @@ components:
             allOf:
               - $ref: "#/components/schemas/RelatedMalfacon"
 
-    AttachmentMalfacon:
-      oneOf:
-        - $ref: "#/components/schemas/AttachmentMalfaconStandard"
-        - $ref: "#/components/schemas/AttachmentMalfaconPhoto"
-        - $ref: "#/components/schemas/AttachmentMalfaconMultiPartStandard"
-        - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+    AttachmentMalfaconStandard:
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
+        - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
+        - $ref: "#/components/schemas/MalfaconRelatedEntity"
       properties:
         "@type":
           type: string
       required:
         - "@type"
 
-    AttachmentMalfaconStandard:
-      allOf:
-        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
-        - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
-        - $ref: "#/components/schemas/MalfaconRelatedEntity"
-
-
     AttachmentMalfaconPhoto:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentImage"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
+      properties:
+        "@type":
+          type: string
+      required:
+        - "@type"
 
     AttachmentMalfaconMultiPartStandard:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart"
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
+      properties:
+        "@type":
+          type: string
+      required:
+        - "@type"
 
     AttachmentMalfaconMultiPartPhoto:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartImage"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
+      properties:
+        "@type":
+          type: string
+      required:
+        - "@type"
 
     Event:
       allOf:
@@ -1496,7 +1503,7 @@ components:
         - $ref: "#/components/schemas/Event"
         - properties:
             data:
-              $ref: "#/components/schemas/AttachmentMalfacon"
+              $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/RelatedEntity.openapi.yaml#/components/schemas/AttachmentBase"
 
     RelatedMalfacon:
       allOf:
