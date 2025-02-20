@@ -1425,16 +1425,30 @@ components:
           "documentPhoto": "#/components/schemas/AttachmentMalfaconMonoPartPhoto"
           "documentMultiPartStandard": "#/components/schemas/AttachmentMalfaconMultiPartStandard"
           "documentMultiPartPhoto": "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+          "documentMonoPart": "#/components/schemas/AttachmentMalfaconMonoPart"
+          "documentMultiPart": "#/components/schemas/AttachmentMalfaconMultiPart"
 
     AttachmentMalfaconMonoPart:
       allOf:
         - $ref: "#/components/schemas/AttachmentMalfacon"
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#AttachmentMonoPart"
+      properties:
+        "@type":
+          type: string
+          default: "malfaconMonoPart"
+      required:
+        - "@type"
 
     AttachmentMalfaconMultiPart:
       allOf:
         - $ref: "#/components/schemas/AttachmentMalfacon"
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#AttachmentMultiPart"
+      properties:
+        "@type":
+          type: string
+          default: "malfaconMonoPartStandard"
+      required:
+        - "@type"
 
     AttachmentMalfaconMonoPartStandard:
       allOf:
