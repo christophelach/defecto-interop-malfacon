@@ -373,11 +373,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-                - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
-              discriminator:
-                propertyName: "@type"
+              $ref: "#/components/schemas/AttachmentMalfacon"
       responses:
         "200":
           description: |
@@ -388,11 +384,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
-                discriminator:
-                  propertyName: "@type"
+                $ref: "#/components/schemas/AttachmentMalfacon"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -454,11 +446,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
-                discriminator:
-                  propertyName: "@type"
+                $ref: "#/components/schemas/AttachmentMalfacon"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -1437,48 +1425,41 @@ components:
               - $ref: "#/components/schemas/RelatedMalfacon"
 
     AttachmentMalfacon:
-      allOf:
-        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
-        - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
-        - $ref: "#/components/schemas/MalfaconRelatedEntity"
+      oneOf:
+        - $ref: "#/components/schemas/AttachmentMalfaconStandard"
+        - $ref: "#/components/schemas/AttachmentMalfaconPhoto"
+        - $ref: "#/components/schemas/AttachmentMalfaconMultiPartStandard"
+        - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
       properties:
         "@type":
           type: string
       required:
         - "@type"
+
+    AttachmentMalfaconStandard:
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
+        - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
+        - $ref: "#/components/schemas/MalfaconRelatedEntity"
+
 
     AttachmentMalfaconPhoto:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentImage"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-      properties:
-        "@type":
-          type: string
-      required:
-        - "@type"
 
-    AttachmentMalfaconMultiPart:
+    AttachmentMalfaconMultiPartStandard:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart"
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-      properties:
-        "@type":
-          type: string
-      required:
-        - "@type"
 
     AttachmentMalfaconMultiPartPhoto:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartImage"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-      properties:
-        "@type":
-          type: string
-      required:
-        - "@type"
 
     Event:
       allOf:
@@ -1525,11 +1506,7 @@ components:
         - $ref: "#/components/schemas/Event"
         - properties:
             data:
-              oneOf:
-                - $ref: "#/components/schemas/AttachmentMalfacon"
-                - $ref: "#/components/schemas/AttachmentMalfaconPhoto"
-              discriminator:
-                propertyName: "@type"
+              $ref: "#/components/schemas/AttachmentMalfacon"
 
     RelatedMalfacon:
       allOf:
