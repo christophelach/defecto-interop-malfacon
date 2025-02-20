@@ -1516,11 +1516,11 @@ components:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartImage"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-        - properties:
-            "@type":
-              type: string
-          required:
-            - "@type"
+        # - properties:
+      "@type":
+        type: string
+      required:
+        - "@type"
 
     Event:
       allOf:
