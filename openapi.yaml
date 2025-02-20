@@ -367,7 +367,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
+                $ref: "#/components/schemas/AttachmentMalfacon"
       responses:
         "200":
           description: |
@@ -378,7 +378,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
+                $ref: "#/components/schemas/AttachmentMalfacon"
           headers:
             ETag:
               $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/utils/update.openapi.yaml#/components/headers/ETag"
@@ -440,7 +440,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
+                $ref: "#/components/schemas/AttachmentMalfacon"
         "404": *response404
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
@@ -482,7 +482,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
+                  $ref: "#/components/schemas/AttachmentMalfacon"
 
         "404": *response404
         "413":
@@ -1414,6 +1414,17 @@ components:
             allOf:
               - $ref: "#/components/schemas/RelatedMalfacon"
 
+    AttachmentMalfacon:
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#AttachmentBase.yaml"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          - "malfaconStandard": "#/components/schemas/AttachmentMalfaconStandard"
+          - "malfaconPhoto": "#/components/schemas/AttachmentMalfaconPhoto"
+          - "malfaconMultiPartStandard": "#/components/schemas/AttachmentMalfaconMultiPartStandard"
+          - "malfaconMultiPartPhoto": "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+
     AttachmentMalfaconStandard:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
@@ -1422,6 +1433,7 @@ components:
       properties:
         "@type":
           type: string
+          default: "malfaconStandard"
       required:
         - "@type"
 
@@ -1433,6 +1445,7 @@ components:
       properties:
         "@type":
           type: string
+          default: "malfaconPhoto"
       required:
         - "@type"
 
@@ -1444,6 +1457,7 @@ components:
       properties:
         "@type":
           type: string
+          default: "malfaconMultiPartStandard"
       required:
         - "@type"
 
@@ -1455,6 +1469,7 @@ components:
       properties:
         "@type":
           type: string
+          default: "malfaconMultiPartPhoto"
       required:
         - "@type"
 
@@ -1503,7 +1518,7 @@ components:
         - $ref: "#/components/schemas/Event"
         - properties:
             data:
-              $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
+              $ref: "#/components/schemas/AttachmentMalfacon"
 
     RelatedMalfacon:
       allOf:
