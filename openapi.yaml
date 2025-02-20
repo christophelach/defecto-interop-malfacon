@@ -405,45 +405,6 @@ paths:
         default:
           $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
 
-  /malfacon/{malfaconId}/attachment/{attachmentId}:
-    parameters:
-        - $ref: "#/components/parameters/malfaconId"
-        - $ref: "#/components/parameters/attachmentId"
-    post:
-      tags:
-        - Attachment
-        - OI
-      summary: upload the content of an attachment in case of only one chunk has to be uploaded
-      description: |
-        This method allows to upload the content of an attachment which can be sent in one chunk. The content is sent in the body of the request.
-        The attachment expects one chunk and should return an array of size 1 for uploadedChunks. The validation of the content of the attachment is done asynchronously.
-        The status of the attachment should be set to UPLOADED
-      operationId: uploadMalfaconAttachmentContent
-      requestBody:
-        description: The content of the attachment
-        required: true
-        content:
-          application/octet-stream:
-            schema:
-              type: string
-              format: binary
-      responses:
-        "200":
-          description: the content has been uploaded
-          content:
-            application/json:
-              schema:
-                oneOf:
-                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-                  - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
-                discriminator:
-                  propertyName: "@type"
-        "404": *response404
-        default:
-          $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/default
-        "412":
-          $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/responses/errors.openapi.yaml#/components/responses/Error-412
-
   /malfacon/{malfaconId}/attachment/{attachmentId}/content:
     parameters:
       - $ref: "#/components/parameters/malfaconId"
