@@ -542,6 +542,8 @@ paths:
                   anyOf:
                     - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
                     - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+                  discriminator:
+                    propertyName: "@type"
 
         "404": *response404
         "413":
@@ -1565,7 +1567,7 @@ components:
         - $ref: "#/components/schemas/Event"
         - properties:
             data:
-              anyOf:
+              oneOf:
                 - $ref: "#/components/schemas/AttachmentMalfacon"
                 - $ref: "#/components/schemas/AttachmentMalfaconPhoto"
               discriminator:
