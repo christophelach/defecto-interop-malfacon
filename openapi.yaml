@@ -328,13 +328,7 @@ paths:
               schema:
                 type: array
                 items:
-                  anyOf:
-                    - $ref: "#/components/schemas/AttachmentMalfacon"
-                    - $ref: "#/components/schemas/AttachmentMalfaconPhoto"
-                    - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-                    - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
-                  discriminator:
-                    propertyName: "@type"
+                  $ref: "#/components/schemas/AttachmentMalfacon"
         "400": *response400
         "404": *response404
         default:
@@ -488,11 +482,7 @@ paths:
               schema:
                 type: array
                 items:
-                  anyOf:
-                    - $ref: "#/components/schemas/AttachmentMalfaconMultiPart"
-                    - $ref: "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
-                  discriminator:
-                    propertyName: "@type"
+                  $ref: "#/components/schemas/AttachmentMalfacon"
 
         "404": *response404
         "413":
