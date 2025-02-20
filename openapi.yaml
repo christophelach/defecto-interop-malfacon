@@ -1480,45 +1480,42 @@ components:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-        - properties:
-            "@type":
-              type: string
-              example: AttachmentMalfaconMultiPart
-          required:
-            - "@type"
+      properties:
+        "@type":
+          type: string
+      required:
+        - "@type"
 
     AttachmentMalfaconPhoto:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentImage"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-        - properties:
-            "@type":
-              type: string
-              example: AttachmentMalfaconMultiPart
-          required:
-            - "@type"
+      properties:
+        "@type":
+          type: string
+      required:
+        - "@type"
 
     AttachmentMalfaconMultiPart:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart"
         - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-        - properties:
-            "@type":
-              type: string
-              example: AttachmentMalfaconMultiPart
-          required:
-            - "@type"
+      properties:
+        "@type":
+          type: string
+      required:
+        - "@type"
 
     AttachmentMalfaconMultiPartPhoto:
       allOf:
         - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartImage"
         - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
-        # - properties:
-      "@type":
-        type: string
+      properties:
+        "@type":
+          type: string
       required:
         - "@type"
 
