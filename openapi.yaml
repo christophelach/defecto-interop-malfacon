@@ -1420,10 +1420,10 @@ components:
       discriminator:
         propertyName: "@type"
         mapping:
-          "malfaconStandard": "#/components/schemas/AttachmentMalfaconStandard"
-          "malfaconPhoto": "#/components/schemas/AttachmentMalfaconPhoto"
-          "malfaconMultiPartStandard": "#/components/schemas/AttachmentMalfaconMultiPartStandard"
-          "malfaconMultiPartPhoto": "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
+          "documentStandard": "#/components/schemas/AttachmentMalfaconStandard"
+          "documentPhoto": "#/components/schemas/AttachmentMalfaconPhoto"
+          "documentMultiPartStandard": "#/components/schemas/AttachmentMalfaconMultiPartStandard"
+          "documentMultiPartPhoto": "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
 
     AttachmentMalfaconStandard:
       allOf:
