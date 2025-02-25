@@ -1704,4 +1704,4 @@ components:
       description: The chunk index
       required: true
       schema:
-        type: string
+        type: integer
