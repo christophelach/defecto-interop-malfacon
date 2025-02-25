@@ -1429,7 +1429,7 @@ components:
 
     AttachmentMalfacon:
       allOf:
-        - $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/PourValidation/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentBase"
         - $ref: "#/components/schemas/MalfaconRelatedEntity"
       discriminator:
         propertyName: "@type"
