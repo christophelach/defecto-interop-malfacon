@@ -450,7 +450,7 @@ paths:
                   format: binary
                   description: The chunk of the content of the attachment
                 metadata:
-                  $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk
+                  $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/PourValidation/common/schemas/Attachment.openapi.yaml#/components/schemas/Chunk
               required:
                 - file
                 - metadata
@@ -1442,7 +1442,7 @@ components:
     AttachmentMalfaconMonoPart:
       allOf:
         - $ref: "#/components/schemas/AttachmentMalfacon"
-        - $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMonoPart"
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/PourValidation/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMonoPart"
       properties:
         "@type":
           type: string
@@ -1453,7 +1453,7 @@ components:
     AttachmentMalfaconMultiPart:
       allOf:
         - $ref: "#/components/schemas/AttachmentMalfacon"
-        - $ref: "https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart"
+        - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/PourValidation/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart"
       properties:
         "@type":
           type: string
@@ -1487,7 +1487,7 @@ components:
 
     Event:
       allOf:
-        - $ref: https://raw.githubusercontent.com/before-interop/common/v1/common/schemas/CloudEvent.openapi.yaml#/components/schemas/CloudEvent
+        - $ref: https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/PourValidation/common/schemas/CloudEvent.openapi.yaml#/components/schemas/CloudEvent
         - required:
             - time
             - subject
