@@ -1421,8 +1421,8 @@ components:
       discriminator:
         propertyName: "@type"
         mapping:
-          "documentStandard": "#/components/schemas/AttachmentMalfaconMonoPartStandard"
-          "documentPhoto": "#/components/schemas/AttachmentMalfaconMonoPartPhoto"
+          "documentMonoPartStandard": "#/components/schemas/AttachmentMalfaconMonoPartStandard"
+          "documentMonoPartPhoto": "#/components/schemas/AttachmentMalfaconMonoPartPhoto"
           "documentMultiPartStandard": "#/components/schemas/AttachmentMalfaconMultiPartStandard"
           "documentMultiPartPhoto": "#/components/schemas/AttachmentMalfaconMultiPartPhoto"
           "documentMonoPart": "#/components/schemas/AttachmentMalfaconMonoPart"
@@ -1495,58 +1495,6 @@ components:
           default: "malfaconMultiPartPhoto"
       required:
         - "@type"
-
-    # AttachmentMalfaconStandard:
-    #   allOf:
-    #     - $ref: "#/components/schemas/AttachmentMalfacon"
-    #     - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/Attachment"
-    #     - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
-    #     - $ref: "#/components/schemas/MalfaconRelatedEntity"
-    #   properties:
-    #     "@type":
-    #       type: string
-    #       default: "malfaconStandard"
-    #   required:
-    #     - "@type"
-
-    # AttachmentMalfaconPhoto:
-    #   allOf:
-    #     - $ref: "#/components/schemas/AttachmentMalfacon"
-    #     - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentImage"
-    #     - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
-    #     - $ref: "#/components/schemas/MalfaconRelatedEntity"
-    #   properties:
-    #     "@type":
-    #       type: string
-    #       default: "malfaconPhoto"
-    #   required:
-    #     - "@type"
-
-    # AttachmentMalfaconMultiPartStandard:
-    #   allOf:
-    #     - $ref: "#/components/schemas/AttachmentMalfacon"
-    #     - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPart"
-    #     - $ref: "#/components/schemas/MalfaconMimeTypeOthers"
-    #     - $ref: "#/components/schemas/MalfaconRelatedEntity"
-    #   properties:
-    #     "@type":
-    #       type: string
-    #       default: "malfaconMultiPartStandard"
-    #   required:
-    #     - "@type"
-
-    # AttachmentMalfaconMultiPartPhoto:
-    #   allOf:
-    #     - $ref: "#/components/schemas/AttachmentMalfacon"
-    #     - $ref: "https://raw.githubusercontent.com/christophelach/defecto-interop-common/refs/heads/59-Idea2/common/schemas/Attachment.openapi.yaml#/components/schemas/AttachmentMultiPartImage"
-    #     - $ref: "#/components/schemas/AttachmentMalfaconSpecialisationPhoto"
-    #     - $ref: "#/components/schemas/MalfaconRelatedEntity"
-    #   properties:
-    #     "@type":
-    #       type: string
-    #       default: "malfaconMultiPartPhoto"
-    #   required:
-    #     - "@type"
 
     Event:
       allOf:
